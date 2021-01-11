@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         allZero(nums);
-        randomTwo();
+        randomTwoCheck();
         updateText(nums);
     }
 
@@ -45,6 +45,24 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.textView16)).setText(nums[3][3]+"");
     }
 
+    public void randomTwoCheck(){
+        if(openSpace()) {
+            randomTwo();
+        }
+    }
+
+    public boolean openSpace(){
+        boolean contains_zero = false;
+        for(int i = 0; i < nums.length; i++){
+            for(int j = 0; j < nums[i].length; j++){
+                if(nums[i][j] == 0){
+                    contains_zero = true;
+                }
+            }
+        }
+        return contains_zero;
+    }
+
     public void randomTwo(){
         int i = (int) Math.round(Math.random() * 3);
         int j = (int) Math.round(Math.random() * 3);
@@ -59,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         moveLeft();
         combineLeft();
         moveLeft();
-        randomTwo();
+        randomTwoCheck();
         updateText(nums);
 
     }
@@ -67,14 +85,14 @@ public class MainActivity extends AppCompatActivity {
         moveRight();
         combineRight();
         moveRight();
-        randomTwo();
+        randomTwoCheck();
         updateText(nums);
     }
     public void up(View view){
         moveUp();
         combineUp();
         moveUp();
-        randomTwo();
+        randomTwoCheck();
         updateText(nums);
 
     }
@@ -82,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         moveDown();
         combineDown();
         moveDown();
-        randomTwo();
+        randomTwoCheck();
         updateText(nums);
     }
 
