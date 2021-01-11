@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     int[][] nums = new int[4][4];
+
+    //sets every number in nums to 0
     public void allZero(int[][] nums){
         for(int i = 0; i<nums.length; i++){
             for(int j = 0; j<nums[i].length; j++){
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Updates text in each TextView to display the number in the nums on the correct TextView
     public void updateText(int[][]nums){
         ((TextView)findViewById(R.id.textView1)).setText(nums[0][0]+"");
         ((TextView)findViewById(R.id.textView2)).setText(nums[0][1]+"");
@@ -45,12 +48,14 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.textView16)).setText(nums[3][3]+"");
     }
 
+    //Determines if there is an open slot to insert a 2
     public void randomTwoCheck(){
         if(openSpace()) {
             randomTwo();
         }
     }
 
+    //Checks to see if nums contains a 0
     public boolean openSpace(){
         boolean contains_zero = false;
         for(int i = 0; i < nums.length; i++){
@@ -63,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         return contains_zero;
     }
 
+    //changes a random 0 in nums to 2
     public void randomTwo(){
         int i = (int) Math.round(Math.random() * 3);
         int j = (int) Math.round(Math.random() * 3);
@@ -73,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //occurs on button_Left click
     public void left (View view){
         moveLeft();
         combineLeft();
@@ -81,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         updateText(nums);
 
     }
+
+    //occurs on button_Right click
     public void right(View view){
         moveRight();
         combineRight();
@@ -88,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         randomTwoCheck();
         updateText(nums);
     }
+
+    //occurs on button_Up click
     public void up(View view){
         moveUp();
         combineUp();
@@ -96,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
         updateText(nums);
 
     }
+
+    //occurs on button_Down click
     public void down(View view){
         moveDown();
         combineDown();
@@ -104,12 +117,14 @@ public class MainActivity extends AppCompatActivity {
         updateText(nums);
     }
 
+    //resets game to original state
     public void reset(View view){
         allZero(nums);
         randomTwo();
         updateText(nums);
     }
 
+    //moves all non zero numbers to the left
     public void moveLeft(){
         for(int count = 0; count < 3; count++){
             for(int i = 0; i < nums.length; i++){
@@ -124,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //moves all non zero numbers to the right
     public void moveRight(){
         for(int count = 0; count<3; count++){
             for(int i = 0; i < nums.length; i++){
@@ -138,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //moves all non zero numbers up
     public void moveUp(){
         for(int count = 0; count < 3; count++){
             for(int i = 0; i < nums.length-1; i++){
@@ -151,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //moves all non zero numbers down
     public void moveDown(){
         for(int count = 0; count < 3; count++){
             for(int i = nums.length-1; i>0; i--){
@@ -165,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //combines all numbers starting on the left
     public void combineLeft(){
         for(int i = 0; i < nums.length; i++){
             for(int j = 0; j < nums[i].length-1; j++){
@@ -176,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //combines all numbers starting on the right
     public void combineRight(){
         for(int i = 0; i < nums.length; i++){
             for(int j = nums.length-1; j>0; j--){
@@ -187,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //combines all numbers starting on the top
     public void combineUp(){
         for(int i = 0; i < nums.length-1; i++){
             for(int j = 0; j<nums[i].length; j++){
@@ -198,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //combines all numbers starting on the bottom
     public void combineDown(){
         for(int i = nums.length-1; i > 0; i--){
             for(int j = 0; j<nums[i].length; j++){
